@@ -9,7 +9,7 @@ class Settings():
     db_url: str = "sqlite:///./urlshortener.sqlite"
 
     # default to SQLite
-    app_server: str = "offline" #change to 'development' for postgres database
+    app_server: str = "development" #change to 'development' for postgres database
     
     #openai tags
     tags = [
@@ -41,5 +41,5 @@ def get_settings() -> Settings:
     settings = Settings()
     if settings.app_server == "development":
         settings.db_url = "postgresql://qvbjejch:uNSkTrw7fp5NLMudQSKKVSjnJGwtafNq@raja.db.elephantsql.com/qvbjejch"
-        settings.base_url = "https://alfredurl.onrender.com/"
+        settings.base_url = "https://af-urls.onrender.com/"
     return settings
