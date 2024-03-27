@@ -10,7 +10,7 @@ from starlette.staticfiles import StaticFiles
 
 
 app = FastAPI(
-    title="Ezzy Scissor application",
+    title="Alfred Scissor application",
     description="A FastAPI-based URL shortener and redirector.",
     version="0.1.0",
     openapi_tags= get_settings().tags

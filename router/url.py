@@ -17,7 +17,14 @@ router = APIRouter(tags=["url"])
 
 templates = Jinja2Templates(directory="templates")
 
-    
+#index page route
+@router.get("/index", response_class = HTMLResponse)
+async def index_page(
+    request:Request,
+):
+    return templates.TemplateResponse("index.html", {"request": request})
+
+
 #VIEW URL BY KEY
 @router.get("/", response_class = HTMLResponse)
 @rate_limited(max_calls=5, time_frame=60)
@@ -105,7 +112,6 @@ async def forward_to_target_url(
         return RedirectResponse(db_url.target_url, status_code=status.HTTP_307_TEMPORARY_REDIRECT)
     else:
         return templates.TemplateResponse("index.html", {"request": request})
-
 
 
 #CUSTOMIZE GET ROUTE

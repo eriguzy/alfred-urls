@@ -1,0 +1,48 @@
+<!--============= Header Section Starts Here =============-->
+
+<header class="header-section">
+    <div class="container">
+        <div class="header-wrapper">
+            <ul class="menu">
+                <li>
+                    <a href="{{url_for('index_page')}}">Home</a>
+                </li>
+                <li>
+                    <a href="{{url_for('analytics_page')}}">Analytics</a>
+                </li>
+                <li>
+                    <a href="{{url_for('history_page')}}">History</a>
+                </li>
+
+                <li class="d-sm-none text-center">
+                    <a href="{{url_for('signin')}}" class="header-button active"
+                        >Login</a
+                    >
+                </li>
+                <li class="d-sm-none text-center">
+                    <a href="{{url_for('signup')}}" class="mb-4 header-button"
+                        >Register</a
+                    >
+                </li>
+            </ul>
+            <div class="header-bar d-lg-none mr-sm-3">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="header-right">
+                <a
+                    href="{{url_for('signin')}}"
+                    class="header-button d-none d-sm-inline-block m-0 active"
+                    >Login</a
+                >
+                <a
+                    href="{{url_for('signup')}}"
+                    class="header-button d-none d-sm-inline-block m-0"
+                    >Register</a
+                >
+            </div>
+        </div>
+    </div>
+</header>
+<!--============= Header Section Ends Here =============-->

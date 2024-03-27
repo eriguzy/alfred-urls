@@ -24,9 +24,7 @@ async def analytics_page(
 
 #history page route
 @router.get("/history", response_class = HTMLResponse)
-async def features(
-    request:Request,
-):
+async def history_page(request:Request):
     
     return templates.TemplateResponse("history.html", {"request": request})
 

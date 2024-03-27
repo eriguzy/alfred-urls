@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+        {% block title %}{% endblock%}
+        <link
+            rel="stylesheet"
+            href="{{url_for('static', path='/assets/css/bootstrap.min.css') }}"
+        />
+        <link
+            rel="stylesheet"
+            href="{{url_for('static', path='/assets/css/all.min.css') }}"
+        />
+        <link
+            rel="stylesheet"
+            href="{{url_for('static', path='/assets/css/animate.css') }}"
+        />
+        <link
+            rel="stylesheet"
+            href="{{url_for('static', path='/assets/css/flaticon.css') }}"
+        />
+        <link
+            rel="stylesheet"
+            href="{{url_for('static', path='/assets/css/main.css') }}"
+        />
+
+        <style>
+            @media (max-width: 576px) {
+                .qrcode {
+                    width: 100%;
+                }
+            }
+        </style>
+    </head>
+    
+    <body>
+        {% include "navbar.html" %}
+        
+        <!--============= ScrollToTop Section Starts Here =============-->
+        <div class="overlayer" id="overlayer">
+            <div class="loader">
+                <div class="loader-inner"></div>
+            </div>
+        </div>
+        <a href="#0" class="scrollToTop"><i class="fas fa-angle-up"></i></a>
+        <div class="overlay"></div>
+        <!--============= ScrollToTop Section Ends Here =============-->
+        {% block content %} {% endblock %}
+
+        <script src="{{url_for('static', path='/assets/js/jquery-3.3.1.min.js')}}"></script>
+        <script src="{{url_for('static', path='/assets/js/modernizr-3.6.0.min.js')}}"></script>
+        <script src="{{url_for('static', path='/assets/js/plugins.js')}}"></script>
+        <script src="{{url_for('static', path='/assets/js/bootstrap.min.js')}}"></script>
+        <script src="{{url_for('static', path='/assets/js/wow.min.js')}}"></script>
+        <script src="{{url_for('static', path='/assets/js/waypoints.js')}}"></script>
+        <script src="{{url_for('static', path='/assets/js/nice-select.js')}}"></script>
+        <script src="{{url_for('static', path='/assets/js/counterup.min.js')}}"></script>
+        <script src="{{url_for('static', path='/assets/js/owl.min.js')}}"></script>
+        <script src="{{url_for('static', path='/assets/js/magnific-popup.min.js')}}"></script>
+        <script src="{{url_for('static', path='/assets/js/paroller.js')}}"></script>
+        <script src="{{url_for('static', path='/assets/js/contact.js')}}"></script>
+        <script src="{{url_for('static', path='/assets/js/main.js')}}"></script>
+    </body>
+</html>

@@ -18,16 +18,17 @@ templates = Jinja2Templates(directory="templates")
 #register page route
 @router.get("/sign-up", response_class=HTMLResponse)
 @rate_limited(max_calls=3, time_frame=60)
-async def register(request: Request):
-    return templates.TemplateResponse("register.html", {"request": request})
+async def signup(request: Request):
+    return templates.TemplateResponse("sign-up.html", {"request": request})
 
 #NEW USER REGISTRATION
 @router.post('/sign-up', response_class=HTMLResponse)
-async def register(
+async def signup(
     request: Request, 
+    fullname: str = Form(...),
     email: str = Form(...),
-    firstname: str = Form(...), 
-    lastname: str = Form(...), 
+    tel: str = Form(...), 
+    username: str = Form(...), 
     password: str = Form(...), 
     password2: str = Form(...),
     db:Session=Depends(database.get_db)
@@ -36,29 +37,21 @@ async def register(
     msg = []
     
     if password != password2:
-        msg.append("Passwords do not match")
-        return templates.TemplateResponse("register.html", {
+        msg.append("Passwords mismatch")
+        return templates.TemplateResponse("sign-up.html", {
             "request": request, 
             "msg": msg,
             'email': email,
-            "firstname": firstname,  
-            "lastname": lastname
-        })
-    
-    if len(password) < 6:
-        msg.append("Password should be > 6 character")
-        return templates.TemplateResponse("register.html", {
-            "request": request, 
-            "msg": msg,
-            'email': email,
-            "firstname": firstname,  
-            "lastname": lastname
+            "fullname": fullname,  
+            "tel": tel,
+            "username": username,
         })
 
     new_user = model.USER(
-        firstname = firstname,
-        lastname = lastname,
         email = email,
+        fullname = fullname,
+        tel = tel,
+        username = username,
         password = bcrpyt_context.hash(password),
     )
     
@@ -68,19 +61,20 @@ async def register(
         db.refresh(new_user)
         msg.append("Registration successful")
         return templates.TemplateResponse(
-            "login.html", 
+            "sign-in.html", 
             {"request": request, 
                 "msg": msg,
             })
-        
+    
     except IntegrityError:
         msg.append("Email already taken")
-        return templates.TemplateResponse("register.html", {
+        return templates.TemplateResponse("sign-up.html", {
             "request": request, 
             "msg": msg,
-            'email': email,
-            "firstname": firstname,  
-            "lastname": lastname
+            "email": email,
+            "fullname": fullname,  
+            "tel": tel,
+            "username": username,
         })
 
 

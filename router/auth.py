@@ -42,16 +42,16 @@ async def login_for_access_token(
 
 
 #login get page route
-@router.get("/login", response_class=HTMLResponse)
+@router.get("/signin", response_class=HTMLResponse)
 @rate_limited(max_calls=3, time_frame=60)
-async def authenticationpage(request: Request):
+async def signin(request: Request):
     
-    return templates.TemplateResponse("login.html", {"request": request})
+    return templates.TemplateResponse("sign-in.html", {"request": request})
 
 #login post page route
-@router.post("/login", response_class=HTMLResponse)
+@router.post("/signin", response_class=HTMLResponse)
 @rate_limited(max_calls=2, time_frame=60)
-async def login(
+async def signin(
     request:Request, 
     db:Session=Depends(database.get_db)
     ):
@@ -61,13 +61,13 @@ async def login(
     try:
         form = user.LoginForm(request)
         await form.create_auth_form()
-        response = RedirectResponse("/ezzy/dashboard", status_code=status.HTTP_302_FOUND)
+        response = RedirectResponse("/alfred/dashboard", status_code=status.HTTP_302_FOUND)
         
         validate_user_cookie = await login_for_access_token(response=response, form_data=form, db=db)
         
         if not validate_user_cookie:
             msg.append("Invalid Email or Password")
-            return templates.TemplateResponse("login.html", {
+            return templates.TemplateResponse("sign-in.html", {
                 "request": request, 
                 "msg": msg, 
                 "email": form.username
@@ -76,7 +76,7 @@ async def login(
         return response
     except HTTPException:
         msg.append("Unknown error")
-        return templates.TemplateResponse("login.html", {
+        return templates.TemplateResponse("sign-in.html", {
             "request": request, 
             "msg": msg,
             "email": form.username

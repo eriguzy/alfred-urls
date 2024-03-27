@@ -9,7 +9,7 @@ class Settings():
     db_url: str = "sqlite:///./urlshortener.sqlite"
 
     # default to SQLite
-    app_server: str = "development" #change to 'development' for postgres database
+    app_server: str = "offline" #change to 'development' for postgres database
     
     #openai tags
     tags = [
