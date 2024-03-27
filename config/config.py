@@ -40,6 +40,6 @@ def get_settings() -> Settings:
     """Return the current settings."""
     settings = Settings()
     if settings.app_server == "development":
-        settings.db_url = "postgresql://qvbjejch:uNSkTrw7fp5NLMudQSKKVSjnJGwtafNq@raja.db.elephantsql.com/qvbjejch"
+        settings.db_url = "postgresql://yfprnzpj:Sy-SAwv5TVBKh7hV8JpaHzyN6nhcrb6r@raja.db.elephantsql.com/yfprnzpj"
         settings.base_url = "https://af-urls.onrender.com/"
     return settings
