@@ -1,3 +1,94 @@
+{% include 'layout.html' %} {% block title%}
+<title>Dashboard | ALFRED-URLS</title>
+{% endblock%}
 
+<div class="container">
+    
+    <div class="card-body text-monospace"></div>
+    <div class="card-body text-monospace">create magic</div>
+
+    <div class="card-body">
+        <h2>Hi, {{user.firstname}}</h2>
+    </div>
+    
+    <div class="card-body text-center">
+        <div class="card-body"><h2>this is  your Dashboard</h2></div>
+        <h4 class="card-title"><i>Get custom links and a complimentary domain.</i></h4>
+        <h3 class="card-text text-monospace">
+            Your Connections Platform.
+        </h3>
+    </div>
+    
+    <div class="card-body"></div>
+    <button
+        onclick="window.location.href='/create_url'"
+        type="button"
+        class="btn btn-success text-monospace"
+    >
+        Create New 
+        <i class="fa fa-magic-wand-sparkles"></i>
+    </button>
+    <div class="card-body"></div>
+
+    <div class="card">
+        <div class="card-body">
+            {% for url in urls %}
+            <div class="navbar">
+                
+                <div class="col">
+                    <div class="container">
+                        <div><h3>{{url.title}}</h3></div>
+                        <div><a href="{{base_url}}{{url.key}}" target ="_blank"><h3 style ="color:#007bff">{{base_url}}{{url.key}}</h3></a></div>
+                        <div><h5>{{url.target_url}}</h5></div>
+                        <div><h4>url_key: {{url.key}}</h4></div>
+                        <div><h4>clicks: {{url.clicks}}</h4></div>
+                    </div>
+                </div>
+                <!--
+                <div class="row"><img src="{{base_url}}{{url.qr_url}}" width="150" height="150" alt="qr_code"></div>
+                -->
+            </div>
+            <hr class="orb-divider"></hr>
+            
+            <div class="">
+                <div class="card-footer card-link">
+                    <button
+                    onclick="window.location.href='/customize/{{url.key}}'"
+                    type="button"
+                    class="btn btn-success"
+                    >
+                        Customize URL
+                    </button>
+                    <button 
+                    type="button" class="btn btn-primary">
+                        <a href = "https://api.qrserver.com/v1/create-qr-code/?data={{base_url}}{{url.key}}&size=300x300" download="{{url.key}}.png" target=_blank class="btn-primary">
+                            Show QR_Image
+                        </a>
+                    </button>
+                    <button 
+                    onclick="window.location.href='/delete/{{url.key}}'" 
+                    type="button" 
+                    class="btn btn-danger"
+                    >
+                        Delete URL   
+                    </button>
+                </div>
+            </div>
+            <hr class="orb-divider"></hr>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="card-body"></div>
+    <hr class="orb-divider"></hr>
+    <hr class="orb-divider"></hr>
+    <div class=""><h4>you've reached the end of this page</h4></div>
+    
+</div>
+
+<div class="card-body"></div>
+<div class="whyscissors"></div>
+
+{% include 'footnote.html' %}
 
 
