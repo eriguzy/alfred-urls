@@ -1,0 +1,71 @@
+{% include 'layout.html' %} {% block title%}
+<title>Alfred | new</title>
+{% endblock%}
+
+<div class="container">
+    <div class="card-body text-monospace"></div>
+    {% for errors in msg %}
+            {% if errors == 'successful'%}
+            <div class="alert alert-success" role="alert">{{ errors }}</div>
+        {% else %}
+            <div class="alert alert-danger" role="alert">{{ errors }}</div>
+        {% endif %} 
+        {% endfor %}
+
+    <div class="card-body text-monospace">message here</div>
+    
+    <div class="card-body">
+        <h2>Create new</h2>
+    </div>
+    <div class="card-body"></div>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                Create unlimited url
+            </div>
+            <div class=card-body>
+                <form method="POST">
+                    <div class="form-group">
+                        <label>Destination</label>
+                        <input 
+                            class="form-control" 
+                            name="target_url" 
+                            placeholder= "https://alfred.com/my-long-url" 
+                            required
+                            >
+                        </input>
+                    </div>
+                    <div class="form-group">
+                        <label>Title (optional) </label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="title" 
+                            name="title" 
+                            placeholder= "Name your created new limk" 
+                            value = "My URL"
+                        >
+                    </div>
+                    <button type="submit" class="btn btn-primary">Trim</button>
+                    <button
+                        onclick="window.location.href='/ezzy/dashboard'"
+                        type="button"
+                        class="btn btn-success"
+                    >
+                        Dashboard
+                    </button>
+                </form>
+            </div>
+        </div>
+        <hr class="orb-divider"></hr>
+        <hr class="orb-divider"></hr>
+        <hr class="orb-divider"></hr>
+        <div class=""><h4>you've reached the end of this page</h4></div>
+    </div>
+</div>
+
+<div class="card-body"></div>
+<div class="whyscissors"></div>
+
+{% include 'footnote.html' %}
